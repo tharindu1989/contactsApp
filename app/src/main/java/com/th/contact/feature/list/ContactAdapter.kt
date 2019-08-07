@@ -16,6 +16,7 @@ import com.th.contact.data.entity.Contact
 class ContactAdapter : RecyclerView.Adapter<ContactViewHolder>() {
 
     var items: List<Contact> = arrayListOf()
+    var clickListener: ContactViewHolder.ClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -24,6 +25,9 @@ class ContactAdapter : RecyclerView.Adapter<ContactViewHolder>() {
 
     override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
         holder.bindData(items[position])
+        clickListener?.let {
+            holder.setClickListener(it, items[position])
+        }
     }
 
     override fun getItemCount(): Int {
@@ -51,5 +55,15 @@ class ContactViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         Picasso.get()
             .load(contact.avatar)
             .into(profileImg)
+    }
+
+    fun setClickListener(listener: ClickListener, contact: Contact) {
+        itemView?.setOnClickListener {
+            listener.onClick(contact)
+        }
+    }
+
+    interface ClickListener {
+        fun onClick(contact: Contact)
     }
 }

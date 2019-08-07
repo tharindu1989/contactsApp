@@ -10,8 +10,6 @@ import io.reactivex.schedulers.Schedulers
  */
 open class BaseApi {
 
-
-
     fun <T> getData(observer: Observable<T>): Observable<T> {
         return observer.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
