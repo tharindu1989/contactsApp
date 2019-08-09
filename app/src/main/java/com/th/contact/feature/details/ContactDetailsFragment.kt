@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.squareup.picasso.Picasso
 import com.th.contact.R
 import com.th.contact.data.entity.Contact
 import com.th.contact.data.entity.ContactDetails
@@ -85,6 +86,14 @@ class ContactDetailsFragment : BaseFragment() {
      * set Contact Details
      */
     private fun setContactDetails(contactDetails: Contact?) {
-        nameTxt.text = contactDetails?.firstName
+        // nameTxt.text = contactDetails?.firstName
+        mobileDetailsWidget.setValue(contactDetails?.firstName)
+        emailDetailsWidget.setValue(contactDetails?.email)
+
+        fullNameTxt.text = "${contactDetails?.firstName} ${contactDetails?.lastName}"
+
+        Picasso.get()
+            .load(contactDetails?.avatar)
+            .into(profileImg)
     }
 }

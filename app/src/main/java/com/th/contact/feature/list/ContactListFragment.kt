@@ -73,6 +73,9 @@ class ContactListFragment : BaseFragment() {
         viewModel.showProgress.observe(this, Observer {
             showOrHideProgress(it)
         })
+        viewModel.onError.observe(this, Observer {
+            showErrorMessage(it)
+        })
     }
 
     private fun refreshData(list: List<Contact>) {

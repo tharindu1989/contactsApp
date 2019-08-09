@@ -1,6 +1,7 @@
 package com.th.contact.feature.base
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 
 /**
@@ -16,8 +17,8 @@ open class BaseFragment : Fragment() {
         mActivity = activity as? MainActivity
     }
 
-    fun showErrorMessage() {
-
+    fun showErrorMessage(error : Throwable) {
+        Toast.makeText(context, "Error ${error.message}", Toast.LENGTH_LONG).show()
     }
 
     fun showOrHideProgress(isHide: Boolean) {

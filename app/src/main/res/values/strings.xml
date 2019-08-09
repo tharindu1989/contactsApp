@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Contacts App</string>
     <string name="title_activity_splash">SplashActivity</string>
+
+    <string name="detail_email">Email</string>
+    <string name="detail_call">Call</string>
+    <string name="detail_message">Message</string>
+    <string name="detail_favorite">Favorite</string>
+
+    <string name="detail_first_name">Name</string>
 </resources>
