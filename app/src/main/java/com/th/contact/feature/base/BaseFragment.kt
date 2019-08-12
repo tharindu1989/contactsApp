@@ -1,5 +1,7 @@
 package com.th.contact.feature.base
 
+import android.os.Bundle
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 
 /**
@@ -8,12 +10,28 @@ import androidx.fragment.app.Fragment
  */
 open class BaseFragment : Fragment() {
 
+    var mActivity: MainActivity? = null
 
-    fun showErrorMessage() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mActivity = activity as? MainActivity
+    }
 
+    fun showErrorMessage(error : Throwable) {
+        Toast.makeText(context, "Error ${error.message}", Toast.LENGTH_LONG).show()
     }
 
     fun showOrHideProgress(isHide: Boolean) {
 
+    }
+
+    /**
+     * Add Fragment
+     * @param fragment : Fragment to Add
+     * @param tag : TAG
+     * @param bundle : Extra Data
+     */
+    fun addFragment(fragment: Fragment, tag: String, bundle: Bundle? = null) {
+        mActivity?.addFragment(fragment, tag, bundle)
     }
 }

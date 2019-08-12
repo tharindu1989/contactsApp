@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.th.contact.R
 import com.th.contact.data.entity.Contact
 import com.th.contact.feature.base.BaseFragment
+import com.th.contact.feature.details.ContactDetailsFragment
 import kotlinx.android.synthetic.main.fragment_contact_list.*
 
 /**
@@ -45,6 +46,13 @@ class ContactListFragment : BaseFragment() {
 
     private fun setListeners() {
 
+        contactAdapter?.clickListener = object : ContactViewHolder.ClickListener {
+            override fun onClick(contact: Contact) {
+                val bundle = Bundle()
+                bundle.putInt("ID", contact.id ?: -1)
+                addFragment(ContactDetailsFragment(), "DETAILS", bundle)
+            }
+        }
     }
 
     private fun initLayout() {
@@ -64,6 +72,9 @@ class ContactListFragment : BaseFragment() {
         })
         viewModel.showProgress.observe(this, Observer {
             showOrHideProgress(it)
+        })
+        viewModel.onError.observe(this, Observer {
+            showErrorMessage(it)
         })
     }
 

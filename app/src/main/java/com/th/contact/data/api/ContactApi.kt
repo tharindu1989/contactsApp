@@ -1,6 +1,7 @@
 package com.th.contact.data.api
 
 import com.th.contact.data.entity.ContactData
+import com.th.contact.data.entity.ContactDetails
 import com.th.contact.data.repository.ContactRepository
 import io.reactivex.Observable
 
@@ -20,5 +21,13 @@ class ContactApi : BaseApi() {
      */
     fun getContactList(numberOfItems: Int): Observable<ContactData> {
         return getData(contactRepo.getContactList(numberOfItems))
+    }
+
+    /**
+     * get Contact Details by ID
+     * @param contactID : ID
+     */
+    fun getContactDetails(contactID: Int): Observable<ContactDetails> {
+        return getData(contactRepo.getContactDetails(contactID))
     }
 }

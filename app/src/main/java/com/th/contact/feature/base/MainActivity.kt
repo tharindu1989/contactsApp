@@ -53,8 +53,11 @@ class MainActivity : AppCompatActivity() {
     /**
      * add Fragment to Container
      */
-    fun addFragment(fragment: Fragment, tag: String) {
+    fun addFragment(fragment: Fragment, tag: String, bundle: Bundle? = null) {
 
+        bundle?.let {
+            fragment.arguments = bundle
+        }
         val fragmentManager = this.supportFragmentManager
         val ft = fragmentManager?.beginTransaction()
         ft?.add(R.id.container, fragment, tag)
