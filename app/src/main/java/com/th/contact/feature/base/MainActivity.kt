@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProviders
+import androidx.test.espresso.idling.CountingIdlingResource
 import com.th.contact.R
 import com.th.contact.component.ProgressDialog
 import com.th.contact.feature.details.ContactDetailsFragment
@@ -19,13 +20,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var contactListViewModel: ContactListViewModel
+    val countingIdlingResource: CountingIdlingResource = CountingIdlingResource("API_LOADING")
     private var progressBar: ProgressDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        contactListViewModel = ViewModelProviders.of(this).get(ContactListViewModel::class.java)
 
         progressBar = ProgressDialog(this)
 
@@ -150,10 +149,14 @@ class MainActivity : AppCompatActivity() {
 
         if (show) {
             if (progressBar?.isShowing == false) {
+                countingIdlingResource.increment()
                 progressBar?.showDialog()
             }
         } else {
             if (progressBar?.isShowing == true) {
+                if (!countingIdlingResource.isIdleNow) {
+                    countingIdlingResource.decrement()
+                }
                 progressBar?.hideDialog()
             }
         }

@@ -13,6 +13,10 @@ import com.th.contact.feature.base.BaseViewModel
  */
 class ContactListViewModel : BaseViewModel() {
 
+    var page: Int = 1
+
+    var items: ArrayList<Contact> = arrayListOf()
+
     val selectedContact: MutableLiveData<Contact> by lazy {
         MutableLiveData<Contact>()
     }
@@ -27,9 +31,9 @@ class ContactListViewModel : BaseViewModel() {
         return contactLiveData
     }
 
-    private fun getContactListData() {
+    fun getContactListData() {
         showProgress()
-        ContactApi().getContactList(1).map {
+        ContactApi().getContactList(page).map {
             hideProgress()
             contactLiveData.value = it
         }.onErrorReturn {
