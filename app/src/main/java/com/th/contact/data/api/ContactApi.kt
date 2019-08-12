@@ -1,5 +1,6 @@
 package com.th.contact.data.api
 
+import com.th.contact.data.entity.Contact
 import com.th.contact.data.entity.ContactData
 import com.th.contact.data.entity.ContactDetails
 import com.th.contact.data.repository.ContactRepository
@@ -29,5 +30,21 @@ class ContactApi : BaseApi() {
      */
     fun getContactDetails(contactID: Int): Observable<ContactDetails> {
         return getData(contactRepo.getContactDetails(contactID))
+    }
+
+    /**
+     * save Contact
+     * @param contact : New Contact Data
+     */
+    fun saveContact(contact: Contact): Observable<Contact> {
+        return getData(contactRepo.saveContact(contact))
+    }
+
+    /**
+     * save Contact
+     * @param contact : updated Contact Data
+     */
+    fun updateContact(contact: Contact): Observable<Contact> {
+        return getData(contactRepo.updateContact(contact))
     }
 }

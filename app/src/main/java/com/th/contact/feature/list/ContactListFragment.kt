@@ -11,7 +11,7 @@ import com.th.contact.R
 import com.th.contact.data.entity.Contact
 import com.th.contact.feature.base.BaseFragment
 import com.th.contact.feature.details.ContactDetailsFragment
-import com.th.contact.util.PageUtil
+import com.th.contact.util.CommonUtil
 import kotlinx.android.synthetic.main.fragment_contact_list.*
 
 /**
@@ -52,7 +52,7 @@ class ContactListFragment : BaseFragment() {
                 val bundle = Bundle()
                 viewModel.selectedContact.value = contact
                 bundle.putInt("ID", contact.id ?: -1)
-                addFragment(ContactDetailsFragment(), PageUtil.CONTACT_DETAILS, bundle)
+                addFragment(ContactDetailsFragment(), CommonUtil.CONTACT_DETAILS, bundle)
             }
         }
     }

@@ -20,4 +20,40 @@ class SaveContactViewModel : BaseViewModel() {
     val contact: MutableLiveData<Contact>  by lazy {
         MutableLiveData<Contact>()
     }
+
+    val savedContact: MutableLiveData<Contact>  by lazy {
+        MutableLiveData<Contact>()
+    }
+
+    val updatedContact: MutableLiveData<Contact>  by lazy {
+        MutableLiveData<Contact>()
+    }
+
+    /**
+     * save New Contact Data
+     * @param contact : New Data
+     */
+    fun saveNewContact(contact: Contact) {
+        showProgress()
+        ContactApi().saveContact(contact).map {
+            hideProgress()
+            savedContact.value = it
+        }.onErrorReturn {
+            onError(it)
+        }.subscribe()
+    }
+
+    /**
+     * update existing Data
+     * @param contact : data
+     */
+    fun updateContact(contact: Contact) {
+        showProgress()
+        ContactApi().updateContact(contact).map {
+            hideProgress()
+            updatedContact.value = it
+        }.onErrorReturn {
+            onError(it)
+        }.subscribe()
+    }
 }

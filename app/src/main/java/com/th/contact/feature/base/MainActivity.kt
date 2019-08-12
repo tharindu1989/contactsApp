@@ -12,7 +12,7 @@ import com.th.contact.feature.details.ContactDetailsFragment
 import com.th.contact.feature.list.ContactListFragment
 import com.th.contact.feature.list.ContactListViewModel
 import com.th.contact.feature.save.SaveContactFragment
-import com.th.contact.util.PageUtil
+import com.th.contact.util.CommonUtil
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         addFragment(
             fragment = ContactListFragment(),
-            tag = PageUtil.CONTACT_LIST,
+            tag = CommonUtil.CONTACT_LIST,
             isAddToBackStack = false
         )
 
@@ -49,14 +49,16 @@ class MainActivity : AppCompatActivity() {
                 hideActionMenu(R.id.actionAdd)
                 hideActionMenu(R.id.actionEdit)
                 showActionMenu(R.id.actionDone)
-                addFragment(SaveContactFragment(), PageUtil.CONTACT_SAVE)
+                val bundle = Bundle()
+                bundle.putString(CommonUtil.INPUT_TYPE, CommonUtil.ADD_CONTACT)
+                addFragment(SaveContactFragment(), CommonUtil.CONTACT_SAVE, bundle)
             }
             R.id.actionEdit -> {
-                val detailsFragment = getFragmentByTag<ContactDetailsFragment>(PageUtil.CONTACT_DETAILS)
+                val detailsFragment = getFragmentByTag<ContactDetailsFragment>(CommonUtil.CONTACT_DETAILS)
                 detailsFragment?.goToEditPage()
             }
             R.id.actionDone -> {
-                val saveFragment = getFragmentByTag<SaveContactFragment>(PageUtil.CONTACT_SAVE)
+                val saveFragment = getFragmentByTag<SaveContactFragment>(CommonUtil.CONTACT_SAVE)
                 saveFragment?.clickDoneButton()
             }
         }
@@ -116,7 +118,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun checkCurrentFragment() {
 
-        getFragmentByTag<SaveContactFragment>(PageUtil.CONTACT_SAVE)?.let {
+        getFragmentByTag<SaveContactFragment>(CommonUtil.CONTACT_SAVE)?.let {
             if (it.isVisible) {
                 hideActionMenu(R.id.actionEdit)
                 hideActionMenu(R.id.actionAdd)
@@ -124,7 +126,7 @@ class MainActivity : AppCompatActivity() {
                 return
             }
         }
-        getFragmentByTag<ContactDetailsFragment>(PageUtil.CONTACT_DETAILS)?.let {
+        getFragmentByTag<ContactDetailsFragment>(CommonUtil.CONTACT_DETAILS)?.let {
             if (it.isVisible) {
                 hideActionMenu(R.id.actionDone)
                 hideActionMenu(R.id.actionAdd)

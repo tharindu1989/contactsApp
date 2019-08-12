@@ -9,10 +9,11 @@ import androidx.lifecycle.ViewModelProviders
 import com.squareup.picasso.Picasso
 import com.th.contact.R
 import com.th.contact.data.entity.Contact
-import com.th.contact.data.entity.ContactDetails
 import com.th.contact.feature.base.BaseFragment
 import com.th.contact.feature.save.SaveContactFragment
-import com.th.contact.util.PageUtil
+import com.th.contact.util.CommonUtil
+import com.th.contact.util.CommonUtil.CONTACT_DATA
+import com.th.contact.util.CommonUtil.INPUT_TYPE
 import kotlinx.android.synthetic.main.fragment_contact_details.*
 
 /**
@@ -74,8 +75,9 @@ class ContactDetailsFragment : BaseFragment() {
      */
     fun goToEditPage() {
         val bundle = Bundle()
-        bundle.putParcelable("contact", viewModel.contactDetails.value?.data)
-        addFragment(SaveContactFragment(), PageUtil.CONTACT_SAVE, bundle)
+        bundle.putString(INPUT_TYPE,CommonUtil.EDIT_CONTACT)
+        bundle.putParcelable(CONTACT_DATA, viewModel.contactDetails.value?.data)
+        addFragment(SaveContactFragment(), CommonUtil.CONTACT_SAVE, bundle)
     }
 
     /**

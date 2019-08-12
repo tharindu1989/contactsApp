@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.th.contact.R
-import com.th.contact.util.PageUtil
+import com.th.contact.util.CommonUtil
 
 /**
  * Created By Tharindu on 8/7/2019
@@ -37,11 +37,11 @@ open class BaseFragment : Fragment() {
 
         mActivity?.addFragment(fragment, tag, bundle)
         when (tag) {
-            PageUtil.CONTACT_DETAILS -> {
+            CommonUtil.CONTACT_DETAILS -> {
                 mActivity?.hideActionMenu(R.id.actionAdd)
                 mActivity?.showActionMenu(R.id.actionEdit)
             }
-            PageUtil.CONTACT_SAVE -> {
+            CommonUtil.CONTACT_SAVE -> {
                 mActivity?.hideActionMenu(R.id.actionEdit)
                 mActivity?.showActionMenu(R.id.actionDone)
             }

@@ -1,7 +1,6 @@
 package com.th.contact.feature.save
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.th.contact.R
 import com.th.contact.data.entity.Contact
 import com.th.contact.feature.base.BaseFragment
+import com.th.contact.util.CommonUtil
 import kotlinx.android.synthetic.main.fragment_save_contact.*
 
 /**
@@ -49,8 +49,8 @@ class SaveContactFragment : BaseFragment() {
      * get External Data
      */
     private fun getData() {
-        viewModel.inputType.value = arguments?.getString("ID")
-        viewModel.contact.value = arguments?.getParcelable<Contact>("contact")
+        viewModel.inputType.value = arguments?.getString(CommonUtil.INPUT_TYPE)
+        viewModel.contact.value = arguments?.getParcelable<Contact>(CommonUtil.CONTACT_DATA)
     }
 
     /**
@@ -72,17 +72,19 @@ class SaveContactFragment : BaseFragment() {
      * set Observers from View model
      */
     private fun setObservers() {
-        viewModel.inputType.observe(this, Observer {
-            //viewModel.getContactDetails()
-        })
+
         viewModel.contact.observe(this, Observer {
             it?.let { contact ->
-                fNameDetailsWidget?.setValue(contact.firstName)
-                lNameDetailsWidget?.setValue(contact.lastName)
-                emailDetailsWidget?.setValue(contact.email)
+                setContactDetails(it)
             } ?: run {
-
+                emailDetailsWidget.enableValue()
             }
+        })
+        viewModel.savedContact.observe(this, Observer {
+            Toast.makeText(context, "SuccessFully Saved", Toast.LENGTH_LONG).show()
+        })
+        viewModel.updatedContact.observe(this, Observer {
+            Toast.makeText(context, "SuccessFully Updated", Toast.LENGTH_LONG).show()
         })
         viewModel.showProgress.observe(this, Observer {
             showOrHideProgress(it)
@@ -90,22 +92,37 @@ class SaveContactFragment : BaseFragment() {
     }
 
     fun clickDoneButton() {
-        Toast.makeText(context, "TEST", Toast.LENGTH_LONG).show()
+        when (viewModel.inputType.value) {
+            CommonUtil.ADD_CONTACT -> {
+                viewModel.saveNewContact(getNewContactData())
+            }
+            CommonUtil.EDIT_CONTACT -> {
+                viewModel.updateContact(getUpdatedContactData())
+            }
+        }
     }
 
     /**
      * set Contact Details
      */
-    private fun setContactDetails(contactDetails: Contact?) {
-        // nameTxt.text = contactDetails?.firstName
-        /* fNameDetailsWidget.setValue(contactDetails?.firstName)
-         lNameDetailsWidget.setValue(contactDetails?.lastName)
-         emailDetailsWidget.setValue(contactDetails?.email)
+    private fun setContactDetails(contact: Contact) {
+        fNameDetailsWidget?.setValue(contact.firstName)
+        lNameDetailsWidget?.setValue(contact.lastName)
+        emailDetailsWidget?.setValue(contact.email)
+    }
 
-         fullNameTxt.text = "${contactDetails?.firstName} ${contactDetails?.lastName}"
+    private fun getNewContactData(): Contact {
+        return Contact(
+            firstName = fNameDetailsWidget.getValue(),
+            lastName = lNameDetailsWidget.getValue(),
+            email = emailDetailsWidget.getValue()
+        )
+    }
 
-         Picasso.get()
-             .load(contactDetails?.avatar)
-             .into(profileImg)*/
+    private fun getUpdatedContactData(): Contact {
+        return Contact(
+            firstName = fNameDetailsWidget.getValue(),
+            lastName = lNameDetailsWidget.getValue()
+        )
     }
 }

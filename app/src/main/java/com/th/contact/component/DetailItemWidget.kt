@@ -45,4 +45,15 @@ class DetailItemWidget @JvmOverloads constructor(
     fun disableValue() {
         valueTxt.isEnabled = false
     }
+
+    /**
+     * enable Value Field
+     */
+    fun enableValue() {
+        valueTxt.isEnabled = true
+    }
+
+    fun getValue(): String {
+        return valueTxt.text.toString()
+    }
 }
