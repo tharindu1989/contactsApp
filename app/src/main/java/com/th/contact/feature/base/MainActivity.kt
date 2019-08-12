@@ -1,13 +1,15 @@
 package com.th.contact.feature.base
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.th.contact.R
-import com.th.contact.data.api.ContactApi
 import com.th.contact.feature.list.ContactListFragment
+import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,13 +17,37 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setSupportActionBar(toolBar)
+
         addFragment(ContactListFragment(), "ContactList")
 
-        /*ContactApi().getContactList(1).map {
-            Log.e("Items", "$it")
-        }.onErrorReturn {
-            Log.e("Error", "$it")
-        }.subscribe()*/
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(com.th.contact.R.menu.contact_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.actionAdd -> {
+
+            }
+            R.id.actionAdd -> {
+
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+
+    fun hideActioninMenu(id: Int) {
+        toolBar.menu.findItem(id).isVisible = false
+    }
+
+    fun showActioninMenu(id: Int) {
+        toolBar.menu.findItem(id).isVisible = true
     }
 
     /**
