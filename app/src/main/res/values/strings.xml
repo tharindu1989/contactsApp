@@ -6,7 +6,8 @@
     <string name="detail_call">Call</string>
     <string name="detail_message">Message</string>
     <string name="detail_favorite">Favorite</string>
-    <string name="detail_first_name">Name</string>
+    <string name="detail_first_name">First Name</string>
+    <string name="detail_last_name">Last Name</string>
 
     <string name="toolbar_add">Add</string>
     <string name="toolbar_edit">Edit</string>
