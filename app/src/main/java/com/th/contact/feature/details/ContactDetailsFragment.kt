@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.squareup.picasso.Picasso
 import com.th.contact.R
+import com.th.contact.component.CircleTransform
 import com.th.contact.data.entity.Contact
 import com.th.contact.feature.base.BaseFragment
 import com.th.contact.feature.save.SaveContactFragment
@@ -108,6 +109,8 @@ class ContactDetailsFragment : BaseFragment() {
 
         Picasso.get()
             .load(contactDetails?.avatar)
+            .transform(CircleTransform())
+            .placeholder(R.drawable.ic_account_circle_black_24dp)
             .into(profileImg)
     }
 }

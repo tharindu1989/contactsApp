@@ -23,8 +23,8 @@ open class BaseFragment : Fragment() {
         Toast.makeText(context, "Error ${error.message}", Toast.LENGTH_LONG).show()
     }
 
-    fun showOrHideProgress(isHide: Boolean) {
-
+    fun showOrHideProgress(show: Boolean) {
+        mActivity?.showOrHideProgress(show)
     }
 
     /**

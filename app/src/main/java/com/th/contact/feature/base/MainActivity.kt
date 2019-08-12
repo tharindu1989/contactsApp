@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.ViewModelProviders
 import com.th.contact.R
+import com.th.contact.component.ProgressDialog
 import com.th.contact.feature.details.ContactDetailsFragment
 import com.th.contact.feature.list.ContactListFragment
 import com.th.contact.feature.list.ContactListViewModel
@@ -19,11 +20,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var contactListViewModel: ContactListViewModel
+    private var progressBar: ProgressDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         contactListViewModel = ViewModelProviders.of(this).get(ContactListViewModel::class.java)
+
+        progressBar = ProgressDialog(this)
 
         setContentView(R.layout.activity_main)
 
@@ -38,7 +42,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(com.th.contact.R.menu.contact_menu, menu)
         return true
     }
@@ -138,5 +141,21 @@ class MainActivity : AppCompatActivity() {
         hideActionMenu(R.id.actionDone)
         hideActionMenu(R.id.actionEdit)
         showActionMenu(R.id.actionAdd)
+    }
+
+    /**
+     * show or Hide Progress
+     */
+    fun showOrHideProgress(show: Boolean) {
+
+        if (show) {
+            if (progressBar?.isShowing == false) {
+                progressBar?.showDialog()
+            }
+        } else {
+            if (progressBar?.isShowing == true) {
+                progressBar?.hideDialog()
+            }
+        }
     }
 }

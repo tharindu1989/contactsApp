@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.squareup.picasso.Picasso
 import com.th.contact.R
+import com.th.contact.component.CircleTransform
 import com.th.contact.data.entity.Contact
 import com.th.contact.feature.base.BaseFragment
 import com.th.contact.util.CommonUtil
@@ -109,6 +111,10 @@ class SaveContactFragment : BaseFragment() {
         fNameDetailsWidget?.setValue(contact.firstName)
         lNameDetailsWidget?.setValue(contact.lastName)
         emailDetailsWidget?.setValue(contact.email)
+        Picasso.get()
+            .load(contact?.avatar)
+            .transform(CircleTransform())
+            .into(profileImg)
     }
 
     private fun getNewContactData(): Contact {

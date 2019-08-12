@@ -5,8 +5,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 import com.th.contact.R
+import com.th.contact.component.CircleTransform
 import com.th.contact.data.entity.Contact
 
 /**
@@ -54,6 +56,9 @@ class ContactViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         nameTxt.text = "${contact.firstName} ${contact.lastName}"
         Picasso.get()
             .load(contact.avatar)
+            .networkPolicy(NetworkPolicy.OFFLINE)
+            .placeholder(R.drawable.ic_account_circle_black_24dp)
+            .transform(CircleTransform())
             .into(profileImg)
     }
 
