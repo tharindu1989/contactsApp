@@ -11,5 +11,6 @@
 
     <string name="toolbar_add">Add</string>
     <string name="toolbar_edit">Edit</string>
+    <string name="toolbar_done">Done</string>
 
 </resources>

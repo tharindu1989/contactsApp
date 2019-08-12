@@ -13,6 +13,10 @@ import com.th.contact.feature.base.BaseViewModel
  */
 class ContactListViewModel : BaseViewModel() {
 
+    val selectedContact: MutableLiveData<Contact> by lazy {
+        MutableLiveData<Contact>()
+    }
+
     private val contactLiveData: MutableLiveData<ContactData> by lazy {
         MutableLiveData<ContactData>().also {
             getContactListData()

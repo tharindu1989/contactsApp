@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/detail_top_background">
+
+        <ImageView
+                android:id="@+id/profileImg"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/ic_account_circle_black_24dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+
+        <com.th.contact.component.DetailItemWidget
+                android:id="@+id/fNameDetailsWidget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:details_label="@string/detail_first_name"
+                app:details_value_disable="false"/>
+
+        <com.th.contact.component.DetailItemWidget
+                android:id="@+id/lNameDetailsWidget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:details_label="@string/detail_last_name"
+                app:details_value_disable="false"/>
+
+
+        <com.th.contact.component.DetailItemWidget
+                android:id="@+id/emailDetailsWidget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:details_label="@string/detail_email"
+                app:details_value_disable="true"/>
+    </LinearLayout>
+
+</LinearLayout>
