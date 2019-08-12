@@ -51,7 +51,7 @@ class ContactViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
     var profileImg: ImageView = itemView.findViewById(R.id.profileImg)
 
     fun bindData(contact: Contact) {
-        nameTxt.text = contact.firstName
+        nameTxt.text = "${contact.firstName} ${contact.lastName}"
         Picasso.get()
             .load(contact.avatar)
             .into(profileImg)

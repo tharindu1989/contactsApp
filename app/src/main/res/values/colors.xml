@@ -7,7 +7,6 @@
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="gray">#dfdfdf</color>
-
-
+    <color name="line">#5E838282</color>
 
 </resources>
