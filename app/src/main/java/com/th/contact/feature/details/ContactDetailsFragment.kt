@@ -87,7 +87,8 @@ class ContactDetailsFragment : BaseFragment() {
      */
     private fun setContactDetails(contactDetails: Contact?) {
         // nameTxt.text = contactDetails?.firstName
-        mobileDetailsWidget.setValue(contactDetails?.firstName)
+        fNameDetailsWidget.setValue(contactDetails?.firstName)
+        lNameDetailsWidget.setValue(contactDetails?.lastName)
         emailDetailsWidget.setValue(contactDetails?.email)
 
         fullNameTxt.text = "${contactDetails?.firstName} ${contactDetails?.lastName}"
