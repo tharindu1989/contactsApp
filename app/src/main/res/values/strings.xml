@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">Contacts App</string>
+    <string name="app_name">Contacts</string>
+    <string name="title_activity_splash">SplashActivity</string>
+
+    <string name="detail_email">Email</string>
+    <string name="detail_call">Call</string>
+    <string name="detail_message">Message</string>
+    <string name="detail_favorite">Favorite</string>
+    <string name="detail_first_name">First Name</string>
+    <string name="detail_last_name">Last Name</string>
+
+    <string name="toolbar_add">Add</string>
+    <string name="toolbar_edit">Edit</string>
+    <string name="toolbar_done">Done</string>
+
+    <string name="loading">Loading..</string>
+
 </resources>

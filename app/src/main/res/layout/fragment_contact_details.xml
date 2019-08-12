@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/detail_top_background">
+
+        <ImageView
+                android:id="@+id/profileImg"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+                android:id="@+id/fullNameTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/profileImg"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginBottom="30dp"
+                app:layout_constraintBottom_toTopOf="@+id/messageIcn"/>
+
+        <com.th.contact.component.IconWidget
+                android:id="@+id/messageIcn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"
+                app:iconSrc="@drawable/ic_message_black_24dp"
+                app:title="@string/detail_message"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/callIcn"/>
+        <com.th.contact.component.IconWidget
+                android:id="@+id/callIcn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:iconSrc="@drawable/ic_call_black_24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/messageIcn"
+                app:layout_constraintEnd_toStartOf="@+id/emailIcn"
+                android:layout_marginStart="8dp"
+                app:title="@string/detail_call"
+                app:layout_constraintHorizontal_bias="0.5"/>
+
+        <com.th.contact.component.IconWidget
+                android:id="@+id/emailIcn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="8dp"
+                app:iconSrc="@drawable/ic_mail_outline_black_24dp"
+                app:layout_constraintStart_toEndOf="@+id/callIcn"
+                app:title="@string/detail_email"
+                app:layout_constraintEnd_toStartOf="@+id/favIcn"
+                android:layout_marginEnd="8dp" app:layout_constraintHorizontal_bias="0.5"/>
+        <com.th.contact.component.IconWidget
+                android:id="@+id/favIcn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"
+                app:title="@string/detail_favorite"
+                app:iconSrc="@drawable/ic_favorite_black_24dp"
+                app:layout_constraintStart_toEndOf="@+id/emailIcn"
+                app:layout_constraintHorizontal_bias="0.5"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+
+        <com.th.contact.component.DetailItemWidget
+                android:id="@+id/fNameDetailsWidget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:details_label="@string/detail_first_name"
+                app:details_value_disable="true"/>
+
+        <com.th.contact.component.DetailItemWidget
+                android:id="@+id/lNameDetailsWidget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:details_label="@string/detail_last_name"
+                app:details_value_disable="true"/>
+
+
+        <com.th.contact.component.DetailItemWidget
+                android:id="@+id/emailDetailsWidget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:details_label="@string/detail_email"
+                app:details_value_disable="true"/>
+    </LinearLayout>
+
+</LinearLayout>
