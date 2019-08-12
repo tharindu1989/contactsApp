@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.th.contact.R
+import com.th.contact.util.CommonUtil
 
 /**
  * Created By Tharindu on 8/7/2019
@@ -22,8 +23,8 @@ open class BaseFragment : Fragment() {
         Toast.makeText(context, "Error ${error.message}", Toast.LENGTH_LONG).show()
     }
 
-    fun showOrHideProgress(isHide: Boolean) {
-
+    fun showOrHideProgress(show: Boolean) {
+        mActivity?.showOrHideProgress(show)
     }
 
     /**
@@ -36,9 +37,13 @@ open class BaseFragment : Fragment() {
 
         mActivity?.addFragment(fragment, tag, bundle)
         when (tag) {
-            "DETAILS" -> {
-                mActivity?.hideActioninMenu(R.id.actionAdd)
-                mActivity?.showActioninMenu(R.id.actionEdit)
+            CommonUtil.CONTACT_DETAILS -> {
+                mActivity?.hideActionMenu(R.id.actionAdd)
+                mActivity?.showActionMenu(R.id.actionEdit)
+            }
+            CommonUtil.CONTACT_SAVE -> {
+                mActivity?.hideActionMenu(R.id.actionEdit)
+                mActivity?.showActionMenu(R.id.actionDone)
             }
         }
     }

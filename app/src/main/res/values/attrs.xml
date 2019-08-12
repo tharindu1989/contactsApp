@@ -6,5 +6,6 @@
     </declare-styleable>
     <declare-styleable name="DetailsItem">
         <attr name="details_label" format="string"/>
+        <attr name="details_value_disable" format="boolean"/>
     </declare-styleable>
 </resources>

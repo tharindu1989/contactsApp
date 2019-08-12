@@ -25,7 +25,9 @@ class DetailItemWidget @JvmOverloads constructor(
                 R.styleable.DetailsItem, 0, 0
             )
             val labelStr = typedArray.getString(R.styleable.DetailsItem_details_label)
+            val isDisable = typedArray.getBoolean(R.styleable.DetailsItem_details_value_disable, false)
             labelTxt.text = labelStr
+            valueTxt.isEnabled = !isDisable
 
         }
     }
@@ -34,6 +36,24 @@ class DetailItemWidget @JvmOverloads constructor(
      * set Value
      */
     fun setValue(value: String?) {
-        valueTxt.text = value
+        valueTxt.setText(value)
+    }
+
+    /**
+     * disable Value Field
+     */
+    fun disableValue() {
+        valueTxt.isEnabled = false
+    }
+
+    /**
+     * enable Value Field
+     */
+    fun enableValue() {
+        valueTxt.isEnabled = true
+    }
+
+    fun getValue(): String {
+        return valueTxt.text.toString()
     }
 }

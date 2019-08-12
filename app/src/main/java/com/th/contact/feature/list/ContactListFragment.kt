@@ -11,6 +11,7 @@ import com.th.contact.R
 import com.th.contact.data.entity.Contact
 import com.th.contact.feature.base.BaseFragment
 import com.th.contact.feature.details.ContactDetailsFragment
+import com.th.contact.util.CommonUtil
 import kotlinx.android.synthetic.main.fragment_contact_list.*
 
 /**
@@ -30,7 +31,7 @@ class ContactListFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
 
         viewModel = activity?.let {
-            ViewModelProviders.of(this).get(ContactListViewModel::class.java)
+            ViewModelProviders.of(it).get(ContactListViewModel::class.java)
         } ?: throw Exception("In valid Activity")
 
         setObservers()
@@ -49,8 +50,9 @@ class ContactListFragment : BaseFragment() {
         contactAdapter?.clickListener = object : ContactViewHolder.ClickListener {
             override fun onClick(contact: Contact) {
                 val bundle = Bundle()
+                viewModel.selectedContact.value = contact
                 bundle.putInt("ID", contact.id ?: -1)
-                addFragment(ContactDetailsFragment(), "DETAILS", bundle)
+                addFragment(ContactDetailsFragment(), CommonUtil.CONTACT_DETAILS, bundle)
             }
         }
     }

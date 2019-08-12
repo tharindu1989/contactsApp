@@ -8,5 +8,6 @@
     <color name="black">#000000</color>
     <color name="gray">#dfdfdf</color>
     <color name="line">#5E838282</color>
+    <color name="black_trans">#6D000000</color>
 
 </resources>

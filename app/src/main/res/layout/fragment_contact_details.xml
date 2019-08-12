@@ -8,8 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:background="@drawable/detail_top_background">
 
         <ImageView
@@ -29,12 +28,12 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/profileImg"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="0dp"
                 android:layout_marginTop="10dp"
                 android:textStyle="bold"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="0dp"/>
+                android:layout_marginBottom="30dp"
+                app:layout_constraintBottom_toTopOf="@+id/messageIcn"/>
 
         <com.th.contact.component.IconWidget
                 android:id="@+id/messageIcn"
@@ -99,20 +98,23 @@
                 android:id="@+id/fNameDetailsWidget"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:details_label="@string/detail_first_name"/>
+                app:details_label="@string/detail_first_name"
+                app:details_value_disable="true"/>
 
         <com.th.contact.component.DetailItemWidget
                 android:id="@+id/lNameDetailsWidget"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:details_label="@string/detail_last_name"/>
+                app:details_label="@string/detail_last_name"
+                app:details_value_disable="true"/>
 
 
         <com.th.contact.component.DetailItemWidget
                 android:id="@+id/emailDetailsWidget"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:details_label="@string/detail_email"/>
+                app:details_label="@string/detail_email"
+                app:details_value_disable="true"/>
     </LinearLayout>
 
 </LinearLayout>
