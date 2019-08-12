@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.th.contact.R
 import com.th.contact.data.entity.Contact
 import com.th.contact.feature.base.BaseFragment
@@ -55,6 +56,24 @@ class ContactListFragment : BaseFragment() {
                 addFragment(ContactDetailsFragment(), CommonUtil.CONTACT_DETAILS, bundle)
             }
         }
+        contactListRv?.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+            }
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+
+                var layoutManager = contactListRv.layoutManager as? LinearLayoutManager
+                layoutManager?.let {
+
+                    if (isLastItem(it.findLastCompletelyVisibleItemPosition())) {
+                        viewModel.page++
+                        viewModel?.getContactListData()
+                    }
+                }
+            }
+        })
     }
 
     private fun initLayout() {
@@ -80,7 +99,16 @@ class ContactListFragment : BaseFragment() {
         })
     }
 
+    /**
+     * check RecyclerView is at last item
+     */
+    fun isLastItem(adapterItems: Int?): Boolean {
+        return adapterItems == ((viewModel?.getContactData().value?.data?.size ?: 0) - 1) &&
+                viewModel?.showProgress?.value == false && viewModel?.getContactData().value?.total != contactAdapter.items.size
+    }
+
     private fun refreshData(list: List<Contact>) {
-        contactAdapter.refreshAdapter(list)
+        viewModel.items.addAll(list)
+        contactAdapter.refreshAdapter(viewModel.items)
     }
 }
